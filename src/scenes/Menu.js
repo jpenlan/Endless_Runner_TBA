@@ -14,5 +14,16 @@ class Menu extends Phaser.Scene {
     create() {
         // Initialize menu
         this.menuBackground = this.add.tileSprite(0, 0, 480, 640, 'menuBackground').setOrigin(0, 0);
+
+        // Define keys
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    }
+
+    update() {
+        if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            // Start play scene
+            console.log('test');
+            this.scene.start('playScene');
+        }
     }
 }
