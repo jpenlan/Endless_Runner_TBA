@@ -15,8 +15,10 @@ class Menu extends Phaser.Scene {
         // Initialize menu
         this.menuBackground = this.add.tileSprite(0, 0, 480, 640, 'menuBackground').setOrigin(0, 0);
 
-        // Define keys
+         // Define key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
 
     update() {
