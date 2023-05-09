@@ -18,4 +18,4 @@ let keyLEFT, keyRIGHT, keySPACE, keyR;
 let startGame = false;
 
 // Lane states
-let laneOneX, laneOneY, laneTwoX, laneTwoY, laneThreeX, laneThreeY;
+let laneOneX, laneTwoX, laneThreeX, laneY;

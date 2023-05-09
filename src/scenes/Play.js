@@ -27,11 +27,9 @@ class Play extends Phaser.Scene {
 
         // Set lanes
         laneOneX = 80;
-        laneOneY = 500;
         laneTwoX = 240;
-        laneTwoY = 500;
         laneThreeX = 400;
-        laneThreeY = 500;
+        laneY = 500;
 
         // Define key inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -39,7 +37,7 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         // Add character 
-        this.player = new Player(this, laneTwoX, laneTwoY, 'running', 0);
+        this.player = new Player(this, laneTwoX, laneY, 'running', 0);
 
         // GAME OVER flag
         this.gameOver = false; 
