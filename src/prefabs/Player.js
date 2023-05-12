@@ -8,6 +8,9 @@ class Player extends Phaser.GameObjects.Sprite {
         this.isStarting = true;
         this.swapSpeed = 30
 
+        // enable physics on the sprite
+        scene.physics.add.existing(this);
+
 
     }
 
@@ -18,7 +21,7 @@ class Player extends Phaser.GameObjects.Sprite {
             console.log(this.x);
             console.log(laneTwoX);
             if(this.x == laneTwoX) {
-                this.x = laneOneX; // Temporary
+                this.x = Phaser.Math.Bezier()
             }
             if(this.x == laneThreeX) {
                 this.x = laneTwoX; // Temporary
@@ -38,5 +41,6 @@ class Player extends Phaser.GameObjects.Sprite {
             this.isRunning = true;
             this.isStarting = false;
          }
+         
     }
 }

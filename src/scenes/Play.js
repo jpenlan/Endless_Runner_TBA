@@ -4,15 +4,16 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('field', './assets/tempRunBackground.png');
+        this.load.image('field', './assets/fieldBackground.png');
         this.load.image('sky', './assets/tempRunB-Background.png');
+        this.load.image('carrot', './assets/carrot-Sheet.png');
         this.load.spritesheet('running', './assets/charRun.png', {frameWidth: 120, frameHeight: 120, startFrame: 0, endFrame: 9});
     }
 
     create() {
         // Add field and sky
         this.sky = this.add.tileSprite(0, 0, 480, 640, 'sky').setOrigin(0, 0);
-        this.field = this.add.tileSprite(0, 240, 480, 400, 'field').setOrigin(0, 0);
+        this.field = this.add.tileSprite(0, 0, 480, 640, 'field').setOrigin(0, 0);
 
         /* White border
         this.add.rectangle(0, 0, game.config.width, borderUISize,0x000000).setOrigin(0, 0);
@@ -39,6 +40,11 @@ class Play extends Phaser.Scene {
         // Add character 
         this.player = new Player(this, laneTwoX, laneY, 'running', 0);
 
+        // Initialize timer and enemy number
+        this.counter = 0;
+        this.startTime = this.time.now; // Resets every 1000 milliseconds
+              
+
         // GAME OVER flag
         this.gameOver = false; 
         
@@ -46,8 +52,23 @@ class Play extends Phaser.Scene {
 
     update() {
         if (startGame) {
-            this.field.tilePositionY -= 5  
+            //this.field.tilePositionY -= 5  
+            console.log('game start!');
         }
+
+          // Delay timer for enemy spawn
+          let nowTime = this.time.now
+          if(nowTime > (this.startTime + 1000)) {
+              this.counter += 1; // Increments by a second
+              this.startTime = nowTime
+          }
+  
+          // Spawn timer and enemy sprite generator
+  
+          if(this.counter == Phaser.Math.Between(2, 4)) {
+              this.carrot = new Carrot(this, 100, 400, 'carrot', 0).setOrigin(0, 0);
+              this.counter = 0;
+          }
         
         if (!this.gameOver) {
             this.player.update();
