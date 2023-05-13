@@ -2,13 +2,13 @@ let config = {
     type: Phaser.AUTO,
     width: 480,
     height: 640,
-    scene: [Menu, Play],
-    physics: {
+    scene: [Menu, Play]
+    /*physics: {
         default: 'arcade',
         arcade: {
             debug: false
         }
-}
+}*/
 }
 
 let game = new Phaser.Game(config);
@@ -24,4 +24,4 @@ let keyLEFT, keyRIGHT, keySPACE, keyR;
 let startGame = false;
 
 // Lane states
-let laneOneX, laneTwoX, laneThreeX, laneY;
+let laneOneX, laneTwoX, laneThreeX, laneY, path1;
