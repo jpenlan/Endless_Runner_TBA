@@ -6,7 +6,7 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.image('field', './assets/fieldBackground.png');
         this.load.image('sky', './assets/tempRunB-Background.png');
-        this.load.image('carrot', './assets/carrot-Sheet.png');
+        this.load.spritesheet('carrot', './assets/carrot-Sheet.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 3});
         this.load.spritesheet('running', './assets/charRun.png', {frameWidth: 120, frameHeight: 120, startFrame: 0, endFrame: 9});
     }
 
@@ -43,6 +43,19 @@ class Play extends Phaser.Scene {
         // Initialize timer and enemy number
         this.counter = 0;
         this.startTime = this.time.now; // Resets every 1000 milliseconds
+
+        this.path1 = new Phaser.Curves.Path(180, 200).quadraticBezierTo(80, 640, 110, 480)
+        this.carrot = this.add.follower(this.path1, 0, 0, 'carrot')
+
+        this.carrot.startFollow({
+            positionOnPath: true,
+            duration: 3000,
+            yoyo: false,
+            repeat: 0,
+            rotateToPath: false
+        })
+
+        this.carrot = new Carrot(this, -1000, -1000, 'carrot', 0).setOrigin(0, 0);
               
 
         // GAME OVER flag
@@ -66,12 +79,13 @@ class Play extends Phaser.Scene {
           // Spawn timer and enemy sprite generator
   
           if(this.counter == Phaser.Math.Between(2, 4)) {
-              this.carrot = new Carrot(this, 100, 400, 'carrot', 0).setOrigin(0, 0);
+              this.carrot = new Carrot(this, 200, 400, 'carrot', 0).setOrigin(0, 0);
               this.counter = 0;
           }
         
         if (!this.gameOver) {
             this.player.update();
+            this.carrot.update();
         }
     }
 }
