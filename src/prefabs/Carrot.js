@@ -9,14 +9,15 @@ class Carrot extends Phaser.GameObjects.Sprite {
         // enable physics on the sprite
         scene.physics.add.existing(this);
 
-        // Start movement
-        this.toggleEasing();
-
 
     }
 
-    update() {
+    create() {
         
+    }
+
+    update() {
+
     }
 
 }
